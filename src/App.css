@@ -1,17 +1,17 @@
 :root {
-  --main-bg-light: #d0e7ff; /* Light sky blue background */
-  --card-bg-light: #a8d1ff; /* Lighter blue for cards */
-  --shadow-dark-light: #6aa6d1; /* Darker blue for shadow */
-  --shadow-light-light: #ffffff; /* White for lighter shadow */
-  --text-color-light: #1b3a57; /* Dark blue text color */
+  --main-bg-light: #d0e7ff;
+  --card-bg-light: #a8d1ff;
+  --shadow-dark-light: #6aa6d1;
+  --shadow-light-light: #ffffff;
+  --text-color-light: #1b3a57;
 
-  --main-bg-dark: #102d45; /* Darker blue background for dark mode */
-  --card-bg-dark: #1b4a6b; /* Slightly lighter dark blue for cards */
-  --shadow-dark-dark: #0a1d2f; /* Dark navy blue for shadow */
-  --shadow-light-dark: #315b7d; /* Lighter shadow for dark mode */
-  --text-color-dark: #b0d4f1; /* Light sky blue for text */
+  --main-bg-dark: #102d45;
+  --card-bg-dark: #1b4a6b;
+  --shadow-dark-dark: #0a1d2f;
+  --shadow-light-dark: #315b7d;
+  --text-color-dark: #b0d4f1;
 
-  --btn-hover: #73b3ff; /* Hover color for buttons */
+  --btn-hover: #73b3ff; 
 }
 
 body {
@@ -20,7 +20,6 @@ body {
 }
 
 .light {
-  /* display: flex; */
   justify-content: center;
   align-items: center;
   height: 100vh;

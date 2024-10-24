@@ -7,8 +7,9 @@
      background-color: var(--main-bg-dark);
      color: var(--text-color-dark);
  }
- .logo{
-    margin: 0px;
+
+ .logo {
+     margin: 0px;
  }
 
  .header {
@@ -17,7 +18,6 @@
      align-items: center;
      padding: 10px 20px;
      background-color: var(--header-bg-light);
-     /* Change to dark in dark mode */
      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
  }
 
@@ -42,7 +42,14 @@
 
  .cart {
      background-color: var(--card-bg-light);
-     /* Change to dark in dark mode */
      padding: 5px 15px;
      border-radius: 5px;
+ }
+
+ .cartLink {
+     color: #007bff;
+     text-decoration: none;
+     font-weight: bold;
+     border-radius: 5px;
+     display: inline-block;
  }

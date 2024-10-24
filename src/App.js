@@ -5,6 +5,7 @@ import Login from './component/Login';
 import { ThemeContext } from './context/ThemeProvider';
 import ProductPage from './component/Product';
 import Header from './component/Header';
+import CartPage from './component/CartPage';
 
 function App() {
   const { isDarkMode } = useContext(ThemeContext);
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/products" element={<ProductPage />} />
+          <Route path='/cartPage' element={<CartPage />} />
         </Routes>
       </Router>
     </div>

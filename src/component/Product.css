@@ -25,10 +25,14 @@ body.dark {
   gap: 20px;
   justify-items: center;
   max-height: calc(100vh - 150px);
-  overflow-y: auto;
-  /* Enable vertical scrolling */
+  overflow-y: scroll;
   padding-right: 10px;
-  /* Space for scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.product-grid::-webkit-scrollbar {
+  display: none;
 }
 
 .product-card {
@@ -39,10 +43,8 @@ body.dark {
   text-align: center;
   transition: transform 0.3s ease;
   height: 350px;
-  /* Fixed height for all product cards */
   display: flex;
   flex-direction: column;
-  /* Use flex to manage layout */
 }
 
 .product-card:hover {
@@ -52,48 +54,38 @@ body.dark {
 .product-image {
   max-width: 100%;
   height: 150px;
-  /* Fixed height for images */
   object-fit: cover;
-  /* Maintain aspect ratio and cover the area */
   border-radius: 8px;
 }
 
 .product-details {
   flex-grow: 1;
-  /* Allow details to take available space */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* Space between title and buttons */
   overflow: hidden;
-  /* Hide overflow */
 }
 
 .product-title {
   font-size: 1.2rem;
   color: var(--text-color-light);
   margin: 10px 0;
-  /* Margin for spacing */
 }
 
 .product-price {
   color: var(--text-color-light);
   font-weight: bold;
   margin: 5px 0;
-  /* Margin for spacing */
 }
 
 .product-category {
   color: var(--shadow-dark-light);
 }
 
-/* Button styling */
 .button-container {
   display: flex;
   justify-content: space-between;
-  /* Space between buttons */
   margin-top: auto;
-  /* Push buttons to the bottom of the card */
 }
 
 .btn {
@@ -105,17 +97,9 @@ body.dark {
   cursor: pointer;
   transition: background-color 0.3s ease;
   flex: 1;
-  /* Make buttons the same width */
   margin: 0 5px;
-  /* Space between buttons */
 }
 
-.btn:hover {
-  background-color: #ff7f7f;
-  /* Lighter on hover */
-}
-
-/* Dark mode styles */
 body.dark .product-page {
   background-color: var(--main-bg-dark);
 }
@@ -141,9 +125,44 @@ body.dark .product-category {
   color: var(--shadow-light-dark);
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .product-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 91vh;
+  background-color: var(--main-bg-light);
+}
+
+.loader {
+  border: 8px solid var(--shadow-light-light);
+  border-top: 8px solid var(--btn-hover);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1.2s linear infinite;
+}
+
+body.dark .loader-container {
+  background-color: var(--main-bg-dark);
+}
+
+body.dark .loader {
+  border: 8px solid var(--shadow-light-dark);
+  border-top: 8px solid var(--text-color-dark);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
   }
 }

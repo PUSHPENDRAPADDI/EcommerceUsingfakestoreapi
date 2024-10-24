@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import './Header.css';
 import { DataContext } from '../context/ContextProvider';
 import { ThemeContext } from '../context/ThemeProvider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
     const { token, setToken, user, cartItemCount, setCartItemCount } = useContext(DataContext);
@@ -28,9 +28,11 @@ const Header = () => {
                         <button onClick={() => navigate('/')} className="login-btn">Login</button>
                     )}
                 </div>
-                <div className="cart">
-                    <span className="cart-count">{cartItemCount} in cart</span>
-                </div>
+                <Link className='cartLink' to={'/cartPage'}>
+                    <div className="cart">
+                        <span className="cart-count">{cartItemCount} in cart</span>
+                    </div>
+                </Link>
                 <button onClick={toggleMode} className="toggle-theme-btn">
                     {isDarkMode ? 'Light Mode' : 'Dark Mode'}
                 </button>
