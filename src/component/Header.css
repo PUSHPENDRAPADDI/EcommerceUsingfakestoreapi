@@ -1,0 +1,48 @@
+ body.light {
+     background-color: var(--main-bg-light);
+     color: var(--text-color-light);
+ }
+
+ body.dark {
+     background-color: var(--main-bg-dark);
+     color: var(--text-color-dark);
+ }
+ .logo{
+    margin: 0px;
+ }
+
+ .header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     padding: 10px 20px;
+     background-color: var(--header-bg-light);
+     /* Change to dark in dark mode */
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+ }
+
+ .header-options {
+     display: flex;
+     align-items: center;
+ }
+
+ .profile {
+     margin-right: 20px;
+ }
+
+ .login-btn,
+ .logout-btn,
+ .toggle-theme-btn {
+     padding: 5px 10px;
+     margin-left: 10px;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+ }
+
+ .cart {
+     background-color: var(--card-bg-light);
+     /* Change to dark in dark mode */
+     padding: 5px 15px;
+     border-radius: 5px;
+ }
