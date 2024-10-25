@@ -7,13 +7,15 @@ export const DataProvider = ({ children }) => {
     const [user, setUer] = useState('');
     const [cartItemCount, setCartItemCount] = useState(0);
     const [cartProductList, setCartProductList] = useState([]);
+    const [totalCost, setTotalCost] = useState(0);
     return (
         <DataContext.Provider
             value={{
                 token, setToken,
                 cartItemCount, setCartItemCount,
                 cartProductList, setCartProductList,
-                user, setUer
+                user, setUer,
+                totalCost, setTotalCost,
             }}
         >
             {children}

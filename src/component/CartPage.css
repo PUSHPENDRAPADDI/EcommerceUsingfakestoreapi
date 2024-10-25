@@ -40,11 +40,11 @@
 }
 
 .cart-item-image {
-    width: 100px;
-    height: 100px;
+    width: 259px;
+    height: 200px;
     object-fit: cover;
     margin-bottom: 10px;
-    border-radius: 50%;
+    border-radius: 10px;
 }
 
 .cart-item-details {
@@ -81,6 +81,7 @@
 }
 
 .cart-summary h2 {
+    margin: 7px;
     color: var(--text-color-light);
 }
 

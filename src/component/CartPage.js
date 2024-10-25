@@ -1,81 +1,50 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import './CartPage.css';
 import { DataContext } from '../context/ContextProvider';
+import { Link } from 'react-router-dom';
+import { addToCart, calculateTotal, removeFromCart } from '../context/FuntionComponent';
 
 const CartPage = () => {
-    const { cartProductList, setCartItemCount, setCartProductList } = useContext(DataContext);
-    const combineDuplicates = (data) => {
-        const productMap = {};
-        data.forEach((product) => {
-            if (productMap[product.id]) {
-                productMap[product.id].quantity += 1;
-            } else {
-                productMap[product.id] = { ...product, quantity: 1 };
-            }
-        });
-        return Object.values(productMap);
-    };
-    const [cart, setCart] = useState([]);
-    useEffect(() => {
-        setCart(combineDuplicates(cartProductList));
-    }, [cartProductList])
-    const calculateTotal = () => {
-        return cart.reduce((total, product) => total + product.price * product.quantity, 0).toFixed(2);
-    };
+    const { totalCost, cartProductList, setCartItemCount, setCartProductList, setTotalCost } = useContext(DataContext);
     const updateQuantity = (prod, type) => {
+        let newArray;
         if (type === 'increase') {
             setCartItemCount(prev => prev + 1);
-            setCartProductList(prev => [...prev, prod]);
+            newArray = addToCart(cartProductList, prod)
         } else if (type === 'decrease') {
-            setCartItemCount(prev => prev - 1);
-            let removedProduct = removeFirstDuplicateById(prod.id);
-            setCartProductList(removedProduct);
+            setCartItemCount(prev => prev > 0 && prev - 1);
+            newArray = removeFromCart(cartProductList, prod)
         }
-        const updatedCart = cart.map(product => {
-            if (product.id === prod.id) {
-                return {
-                    ...product,
-                    quantity: type === 'increase' ? product.quantity + 1 : product.quantity - 1
-                };
-            }
-            return product;
-        });
-        setCart(updatedCart.filter(product => product.quantity > 0));
+        setCartProductList(newArray);
+        setTotalCost(calculateTotal(newArray));
     };
-
-    function removeFirstDuplicateById(id) {
-        const index = cartProductList.findIndex(product => product.id === id);
-        if (index !== -1) {
-            const updatedProducts = [...cartProductList];
-            updatedProducts.splice(index, 1);
-            return updatedProducts;
-        }
-    }
 
     return (
         <div className="cart-page">
             <h1>Your Cart</h1>
             <div className="cart-grid">
-                {cart.map(product => (
+                {cartProductList.map(product => (
                     <div className="cart-item" key={product.id}>
-                        <img src={product.image} alt={product.title} className="cart-item-image" />
+                        <img src={product.images[0]} alt={product.title} className="cart-item-image" />
                         <div className="cart-item-details">
                             <h3>{product.title}</h3>
-                            <p>Price: ${product.price}</p>
+                            <p>Price: ₹{product.price}</p>
                             <div className="quantity-controls">
                                 <button onClick={() => updateQuantity(product, 'decrease')}>-</button>
                                 <span>{product.quantity}</span>
                                 <button onClick={() => updateQuantity(product, 'increase')}>+</button>
                             </div>
-                            <p>Total: ${(product.price * product.quantity).toFixed(2)}</p>
+                            <p>Total: ₹{(product.price * product.quantity).toFixed(2)}</p>
                         </div>
                     </div>
                 ))}
             </div>
 
             <div className="cart-summary">
-                <h2>Total: ${calculateTotal()}</h2>
-                <button className="checkout-btn">Proceed to Checkout</button>
+                <h2>Total: ${totalCost}</h2>
+                <Link className='cartLink' to='/checkout'>
+                    <button className="checkout-btn">Proceed to Checkout</button>
+                </Link>
             </div>
         </div>
     );
