@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Product.css';
 import { DataContext } from '../context/ContextProvider';
-import { BASE_URL2 } from '../config';
+import { BASE_URL } from '../config';
 import { addToCart, calculateTotal } from '../context/FuntionComponent';
+import { Link } from 'react-router-dom';
 
 const ProductPage = () => {
 
@@ -11,14 +12,13 @@ const ProductPage = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`${BASE_URL2}/products`)
+        fetch(`${BASE_URL}/products`)
             .then((res) => res.json())
             .then((data) => {
-                setProduct(data.slice(0, 50));
+                setProduct(data.products);
                 setLoading(false);
             })
             .catch((error) => {
-                console.error('Error fetching product:', error);
                 setLoading(false);
             });
     }, []);
@@ -45,11 +45,15 @@ const ProductPage = () => {
                 <div className="product-grid">
                     {product.map((product) => (
                         <div key={product.id} className="product-card">
-                            <img src={product.images[0]} alt={product.title} className="product-image" />
+                            <Link to='/productDetails'>
+                                <img
+                                    src={product.thumbnail}
+                                    alt={product.title} className="product-image" />
+                            </Link>
                             <div className="product-details">
                                 <h2 className="product-title">{(product.title).substring(0, 60)}</h2>
                                 <p className="product-price">₹{product.price}</p>
-                                <p className="product-category">{product.category.name}</p>
+                                <p className="product-category">{product.category}</p>
                                 <div className="button-container">
                                     <button className="btn add-to-cart" onClick={() => handleAddToCart(product)}>
                                         Add to Cart
@@ -62,7 +66,7 @@ const ProductPage = () => {
                         </div>
                     ))}
                 </div>
-            </div>
+            </div >
         );
     }
 };

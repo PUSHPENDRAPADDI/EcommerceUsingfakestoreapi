@@ -4,7 +4,13 @@ export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
     const [token, setToken] = useState(null);
-    const [user, setUer] = useState('');
+    const [user, setUer] = useState({
+        name: '',
+        accessToken: '',
+        username: '',
+        userProfile: '',
+        refreshToken: ''
+    });
     const [cartItemCount, setCartItemCount] = useState(0);
     const [cartProductList, setCartProductList] = useState([]);
     const [totalCost, setTotalCost] = useState(0);

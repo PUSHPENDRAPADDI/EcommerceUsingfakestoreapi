@@ -28,7 +28,7 @@ const CheckoutPage = () => {
                     cartProductList.map((item) => (
                         <div key={item.id} className="cart-item">
                             <img
-                                src={item.images[0]}
+                                src={item.thumbnail}
                                 alt={item.title}
                                 className="cart-item-image"
                                 onClick={() => handleOpenModal(item)}

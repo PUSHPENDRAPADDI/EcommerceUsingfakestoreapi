@@ -8,6 +8,7 @@ import Header from './component/Header';
 import CartPage from './component/CartPage';
 import CheckoutPage from './component/CheckoutPage';
 import PaymentMethod from './component/PaymentMethod';
+import ProductDetails from './component/ProductDetails';
 
 function App() {
   const { isDarkMode } = useContext(ThemeContext);
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/products" element={<ProductPage />} />
+          <Route path="/productDetails" element={<ProductDetails />} />
           <Route path='/cartPage' element={<CartPage />} />
           <Route path='/checkout' element={<CheckoutPage />} />
           <Route path='/paymentMethod' element={<PaymentMethod />} />

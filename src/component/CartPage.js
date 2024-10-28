@@ -25,7 +25,7 @@ const CartPage = () => {
             <div className="cart-grid">
                 {cartProductList.map(product => (
                     <div className="cart-item" key={product.id}>
-                        <img src={product.images[0]} alt={product.title} className="cart-item-image" />
+                        <img src={product.thumbnail} alt={product.title} className="cart-item-image" />
                         <div className="cart-item-details">
                             <h3>{product.title}</h3>
                             <p>Price: ₹{product.price}</p>

@@ -10,7 +10,7 @@ function Login() {
   const { isDarkMode, toggleMode } = useContext(ThemeContext);
   const { setToken, setUer } = useContext(DataContext);
   const [isSignUp, setIsSignUp] = React.useState(false);
-  const [loginDetails, setLoginDetails] = React.useState({});
+  const [loginDetails, setLoginDetails] = React.useState({ expiresInMins: 30 });
   const navigate = useNavigate();
 
   async function loginUser() {
@@ -22,20 +22,26 @@ function Login() {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        mode: 'cors'
       });
       const data = await response.json();
       if (response.ok) {
-        setToken(data.token);
-        setUer(loginDetails.username)
+        setUer({
+          name: data.firstName,
+          accessToken: data.accessToken,
+          username: data.username,
+          userProfile: data.image,
+          refreshToken: data.refreshToken
+        })
         navigate('/products')
       } else {
         alert("Login failed:", data);
       }
     } catch (error) {
       const dummyAccount = {
-        "username": "johnd",
-        "password": "m38rmF$"
+        "username": 'emilys',
+        "password": 'emilyspass'
       }
       alert(`Error occurred: Tyr with dummy account , ${JSON.stringify(dummyAccount)}`);
     }
